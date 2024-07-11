@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($result->num_rows > 0) {
         $_SESSION['admin'] = $username;
-        header("Location: ../index.html");
+        header("Location: ../index.php");
     } else {
         echo 'Invalid username or password.';
     }

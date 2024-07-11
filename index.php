@@ -1,21 +1,35 @@
+<?php
+session_start();
+if (!isset($_SESSION['admin'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaction Website</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <?php
-    session_start();
-    if (!isset($_SESSION['admin'])) {
-        header("Location: login.html");
-        exit;
-    }
-    ?>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo">
+            <h1>My E-Commerce</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="container">
-        <h1>Transaction Form</h1>
+        <h2>Transaction Form</h2>
         <form id="transaction-form" action="php/process.php" method="POST">
             <div class="form-group">
                 <label for="name">Name:</label>
