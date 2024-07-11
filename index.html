@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <?php
+    session_start();
+    if (!isset($_SESSION['admin'])) {
+        header("Location: login.html");
+        exit;
+    }
+    ?>
     <div class="container">
         <h1>Transaction Form</h1>
         <form id="transaction-form" action="php/process.php" method="POST">
