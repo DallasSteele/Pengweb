@@ -1,0 +1,54 @@
+/*Create Database:*/
+CREATE DATABASE transaction_db;
+
+/*Use Database:*/
+USE transaction_db;
+
+/*Create Products Table:*/
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    description TEXT,
+    image VARCHAR(255)
+);
+
+/*Create Admin Table:*/
+CREATE TABLE admin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+/*Create Orders Table:*/
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    product_id INT,
+    quantity INT,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES admin(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+/*Create Order Items Table:*/
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    price DECIMAL(10, 2),
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+/*Insert Admin User:*/
+INSERT INTO admin (username, password) VALUES ('admin', 'adminpass');
+
+/*Insert Products:*/
+INSERT INTO products (name, price, description, image) VALUES
+('Smartphone A', 299.99, 'High-performance smartphone', 'smartphone_a.jpg'),
+('Laptop B', 999.99, 'Powerful laptop with high resolution', 'laptop_b.jpg'),
+('Headphones C', 199.99, 'Noise-cancelling headphones', 'headphones_c.jpg'),
+('Smartwatch D', 149.99, 'Smartwatch with fitness tracking', 'smartwatch_d.jpg'),
+('Camera E', 599.99, 'Professional-grade camera', 'camera_e.jpg');
