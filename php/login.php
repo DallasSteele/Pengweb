@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include '../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
-    <link rel="stylesheet" href="css/styles.css  ">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
