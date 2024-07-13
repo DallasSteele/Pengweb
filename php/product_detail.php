@@ -4,13 +4,25 @@ if (!isset($_SESSION['admin'])) {
     header("Location: login.php");
     exit();
 }
+
+include 'php/config.php';
+
+$product_id = $_GET['id'];
+$sql = "SELECT * FROM products WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$product = $result->fetch_assoc();
+$stmt->close();
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My E-Commerce</title>
+    <title><?php echo $product['name']; ?></title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -29,8 +41,14 @@ if (!isset($_SESSION['admin'])) {
         </nav>
     </header>
     <div class="container">
-        <h2>Welcome to My E-Commerce</h2>
-        <p>Browse our products and enjoy shopping!</p>
+        <div class="product-detail">
+            <img src="images/<?php echo $product['image']; ?>" alt="<?php echo $product['name']; ?>">
+            <h2><?php echo $product['name']; ?></h2>
+            <p><?php echo $product['description']; ?></p>
+            <p class="price">$<?php echo $product['price']; ?></p>
+            <button class="add-to-cart" data-product-id="<?php echo $product['id']; ?>">Add to Cart</button>
+        </div>
     </div>
+    <script src="js/scripts.js"></script>
 </body>
 </html>

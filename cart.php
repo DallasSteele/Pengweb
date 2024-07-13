@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My E-Commerce</title>
+    <title>Cart</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -29,8 +29,10 @@ if (!isset($_SESSION['admin'])) {
         </nav>
     </header>
     <div class="container">
-        <h2>Welcome to My E-Commerce</h2>
-        <p>Browse our products and enjoy shopping!</p>
+        <h2>Cart</h2>
+        <div class="cart-items"></div>
+        <button id="checkout-button">Checkout</button>
     </div>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
